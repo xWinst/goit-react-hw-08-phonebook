@@ -1,0 +1,26 @@
+.list {
+  width: 500px;
+  margin-top: 24px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  border-radius: 15px;
+  box-shadow: 4px 4px 5px #102510;
+}
+
+.item {
+  display: flex;
+  gap: 20px;
+  padding: 6px 20px;
+  justify-content: space-between;
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px #102510;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

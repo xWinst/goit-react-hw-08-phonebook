@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    width: 500px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 4px 4px 5px #102510;
+}
+
+.label input {
+    margin-top: 12px;
+    border-radius: 4px;
+    outline: none;
+}
