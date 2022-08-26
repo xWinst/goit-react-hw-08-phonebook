@@ -1,10 +1,9 @@
 .form {
-    width: 400px;
-    height: 280px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 40px;
-    margin: 0;
+    margin: 20px auto;
     padding: 20px 50px;
     border-radius: 15px;
     box-shadow: 4px 4px 5px #102510;
@@ -12,6 +11,7 @@
 }
 
 .input {
+    width: 100%;
     height: 40px;
     padding-left: 35px;
     font-size: 20px;
@@ -47,6 +47,14 @@
     left: 12px;
     transform: translateY(-50%);
     fill: currentColor;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: -20px;
+    text-align: center;
 }
 
 .label {

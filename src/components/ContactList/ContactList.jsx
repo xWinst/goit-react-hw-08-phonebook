@@ -5,13 +5,14 @@ import { getContacts, deleteContact } from 'redux/operations';
 import s from './ContactList.module.css';
 
 const ContactList = () => {
-    const contacts = useSelector(state => state.items);
-    const filter = useSelector(state => state.filter);
+    const contacts = useSelector(state => state.contacts.items);
+    const filter = useSelector(state => state.contacts.filter);
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getContacts());
-    }, [dispatch]);
+        if (isLoggedIn) dispatch(getContacts());
+    }, [dispatch, isLoggedIn]);
 
     const onDelete = id => {
         dispatch(deleteContact(id));
@@ -23,11 +24,12 @@ const ContactList = () => {
 
     return visibleList.length > 0 ? (
         <ul className={s.list}>
-            {visibleList.map(({ name, phone, id }) => (
+            {visibleList.map(({ name, number, id }) => (
                 <li className={s.item} key={id}>
-                    <p>
-                        {name} : {phone}
-                    </p>
+                    <div className={s.user}>
+                        <span className={s.name}>{name} :</span>
+                        <span>{number}</span>
+                    </div>
                     <button
                         className={s.button}
                         type="button"

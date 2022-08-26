@@ -4,9 +4,11 @@
     padding: 15px;
     border-radius: 15px;
     box-shadow: 4px 4px 5px #102510;
+    background-color: rgba(235, 255, 0, 0.6);
 }
 
 .label input {
+    width: 400px;
     margin-top: 12px;
     border-radius: 4px;
     outline: none;
