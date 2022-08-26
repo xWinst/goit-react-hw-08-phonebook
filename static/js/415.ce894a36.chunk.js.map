@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/415.ce894a36.chunk.js","mappings":"iKAIA,UAJa,WACT,OAAO,eAAIA,UAAU,QAAd","sources":["pages/Home.jsx"],"sourcesContent":["const Home = () => {\n    return <h1 className=\"title\">Welcome to the Phonebook</h1>;\n};\n\nexport default Home;\n"],"names":["className"],"sourceRoot":""}
