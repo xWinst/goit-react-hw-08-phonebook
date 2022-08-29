@@ -21,7 +21,6 @@ const autorization = createReducer(initalState, {
     },
 
     [logIn.rejected]: (state, action) => {
-        console.log('action: ', action);
         message.error('Login failed', `${action.payload.message}`, 'Ok');
     },
 
