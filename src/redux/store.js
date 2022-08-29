@@ -35,6 +35,7 @@ export const store = configureStore({
                     PURGE,
                     REGISTER,
                 ],
+                ignoredActionPaths: ['payload'],
             },
         }),
 });

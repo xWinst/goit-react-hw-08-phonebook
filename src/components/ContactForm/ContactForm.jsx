@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 import { FaUser, FaPhoneAlt } from 'react-icons/fa';
 import { addContact } from 'redux/operations';
+import message from 'helpers/Message';
 import s from './ContactForm.module.css';
 
 const ContactForm = () => {
@@ -13,17 +13,10 @@ const ContactForm = () => {
     const submitData = event => {
         event.preventDefault();
         if (contacts.find(({ name }) => name === contact.name)) {
-            Report.warning(
+            message.warning(
                 `${contact.name} is already in contacts`,
                 '',
-                'I understand',
-                {
-                    width: '350px',
-                    svgSize: '100px',
-                    titleFontSize: '20px',
-                    buttonFontSize: '20px',
-                    borderRadius: '10px',
-                }
+                'I understand'
             );
         } else {
             dispatch(addContact(contact));

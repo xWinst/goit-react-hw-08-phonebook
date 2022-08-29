@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { register, logIn, logOut, getLastUser } from './authOperations';
+import message from 'helpers/Message';
 
 const initalState = {
     user: { name: null, email: null },
@@ -15,16 +16,33 @@ const autorization = createReducer(initalState, {
         state.isLoggedIn = true;
     },
 
+    [register.rejected]: (state, action) => {
+        message.error('Registration error', `${action.payload.message}`, 'Ok');
+    },
+
+    [logIn.rejected]: (state, action) => {
+        console.log('action: ', action);
+        message.error('Login failed', `${action.payload.message}`, 'Ok');
+    },
+
     [logIn.fulfilled]: (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
     },
 
+    [logOut.rejected]: (state, action) => {
+        message.error('Logout failed', `${action.payload.message}`, 'Ok');
+    },
+
     [logOut.fulfilled]: (state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+    },
+
+    [getLastUser.rejected]: (state, action) => {
+        state.isGettingUser = false;
     },
 
     [getLastUser.fulfilled]: (state, action) => {
@@ -35,10 +53,6 @@ const autorization = createReducer(initalState, {
 
     [getLastUser.pending]: (state, action) => {
         state.isGettingUser = true;
-    },
-
-    [getLastUser.rejected]: (state, action) => {
-        state.isGettingUser = false;
     },
 });
 

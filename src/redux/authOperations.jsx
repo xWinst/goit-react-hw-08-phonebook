@@ -9,35 +9,43 @@ const setToken = token => {
         : '';
 };
 
-export const register = createAsyncThunk('auth/register', async credentials => {
-    console.log('credentials: ', credentials);
-    try {
-        const { data } = await axios.post('/users/signup', credentials);
-        setToken(data.token);
-        return data;
-    } catch (error) {
-        console.log(error);
+export const register = createAsyncThunk(
+    'auth/register',
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post('/users/signup', credentials);
+            setToken(data.token);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
     }
-});
+);
 
-export const logIn = createAsyncThunk('auth/login', async credentials => {
-    try {
-        const { data } = await axios.post('/users/login', credentials);
-        setToken(data.token);
-        return data;
-    } catch (error) {
-        console.log(error);
+export const logIn = createAsyncThunk(
+    'auth/login',
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post('/users/login', credentials);
+            setToken(data.token);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
     }
-});
+);
 
-export const logOut = createAsyncThunk('auth/logout', async credentials => {
-    try {
-        await axios.post('/users/logout', credentials);
-        setToken(null);
-    } catch (error) {
-        console.log(error);
+export const logOut = createAsyncThunk(
+    'auth/logout',
+    async (credentials, { rejectWithValue }) => {
+        try {
+            await axios.post('/users/logout', credentials);
+            setToken(null);
+        } catch (error) {
+            return rejectWithValue(error);
+        }
     }
-});
+);
 
 export const getLastUser = createAsyncThunk('auth/get', async (_, thunkAPI) => {
     const token = thunkAPI.getState().auth.token;
@@ -48,6 +56,6 @@ export const getLastUser = createAsyncThunk('auth/get', async (_, thunkAPI) => {
         const { data } = await axios.get('/users/current');
         return data;
     } catch (error) {
-        console.log(error);
+        return thunkAPI.rejectWithValue(error);
     }
 });
